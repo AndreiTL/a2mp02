@@ -1,32 +1,40 @@
 
 export const LocationService =  {
 
-  getCurrentLocation(callBack: Function, context: Object ) {
+  // coordinates: Coordinates = null,
 
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
+  getCurrentLocation(callBack: Function) {
 
-    function success(pos: Position): PositionCallback {
-      var crd: Coordinates = pos.coords;
+    // if (!this.coordinates) {
+      let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
 
-      console.log('Your current position is:');
-      console.log('Latitude : ' + crd.latitude);
-      console.log('Longitude: ' + crd.longitude);
-      console.log('More or less ' + crd.accuracy + ' meters.');
-      callBack(crd, context);
-      return;
-    }
+      function success(pos: Position): PositionCallback {
+        var crd: Coordinates = pos.coords;
+        // this.coordinates = crd;
+        console.log('Your current position is:');
+        console.log('Latitude : ' + crd.latitude);
+        console.log('Longitude: ' + crd.longitude);
+        console.log('More or less ' + crd.accuracy + ' meters.');
+        callBack(crd);
+        return;
+      }
 
-    function error(err: PositionError): PositionErrorCallback  {
-      console.warn('ERROR(' + err.code + '): ' + err.message);
-      alert('Cann\'t get your current position!');
-      return;
-    }
+      function error(err: PositionError): PositionErrorCallback  {
+        console.warn('ERROR(' + err.code + '): ' + err.message);
+        alert('Cann\'t get your current position!');
+        return;
+      }
 
-    navigator.geolocation.getCurrentPosition(success, error, options);
+      navigator.geolocation.getCurrentPosition(success, error, options);
+    // }
+    // else {
+    //   callBack(this.coordinates, context);
+    // }
+
 
   }
 };

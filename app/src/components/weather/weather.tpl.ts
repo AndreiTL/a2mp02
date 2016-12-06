@@ -1,8 +1,7 @@
 export const template: string = `
 <div>
     <div>Weather in towns: </div>
-        
-        
+                
         
     <!--<div class="townstable">$ {this.townTableRender}</div>-->
     
