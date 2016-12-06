@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
 
-import {MyComponent} from './components/app.main/app.component'
+import { GooglemapComponent } from './components/googlemap/googlemap.component';
+
 
 @NgModule({
   imports:      [ BrowserModule ],
-  declarations: [ AppComponent, MyComponent ],
+  declarations: [ AppComponent, GooglemapComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

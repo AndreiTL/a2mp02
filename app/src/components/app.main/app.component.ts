@@ -7,6 +7,6 @@ import {template} from './app.tpl';
 })
 export class MyComponent {
     constructor(){
-        console.log("MyComponent");
+        console.log("GooglemapComponent");
     }
 }
