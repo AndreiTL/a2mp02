@@ -1,4 +1,4 @@
-import {Component, Output, } from '@angular/core';
+import {Component, Output } from '@angular/core';
 import {template} from './weather.tpl';
 
 import {Weather} from './weather.d';
@@ -13,7 +13,6 @@ import {LocationService} from '../common/location.service'
 export class WeatherComponent {
 
   @Output() updateMarkers: Function;
-
 
   API: string = `94c7919f6854ca11558382472a998f8f`;
   // cnt: string = '10';
