@@ -1,6 +1,6 @@
 export const template: string = `
 <div>
-    <googlemap></googlemap>
+    <googlemap [options]="googleOptions"></googlemap>
     
     
 </div>

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {template} from './googlemap.tpl';
 
-import {NGoogleMapService} from './googlemap.d';
+import {NGoogleMapService} from './googlemap';
 
 import {GoogleMapLoaderService} from '../common/google_maps_loader.service';
 
@@ -10,6 +10,7 @@ import {GoogleMapLoaderService} from '../common/google_maps_loader.service';
   template: template
 })
 export class GooglemapComponent {
+  @Input() options: NGoogleMapService.IGoogleMapOptions ;
 
   lat: string = '0.0';
   lng: string = '0.0';

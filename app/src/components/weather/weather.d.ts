@@ -1,4 +1,4 @@
-declare module Weather {
+export declare module Weather {
   interface ICoordinate {
     lon: number;
     lat: number;
@@ -45,7 +45,14 @@ declare module Weather {
     count: number;
     list: ITownWeather[];
   }
+
+  interface IWeatherOptions{
+    lng: number;
+    lat: number;
+    cnt: number;
+  }
+
 }
-declare module 'Weather/Interfaces' {
-  export default Weather;
-}
+// export declare module 'Weather/Interfaces' {
+//   export default Weather;
+// }
