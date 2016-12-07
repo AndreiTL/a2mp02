@@ -1,4 +1,4 @@
-import {Component, Output} from '@angular/core';
+import {Component, Output, } from '@angular/core';
 import {template} from './weather.tpl';
 
 import {Weather} from './weather.d';
@@ -10,7 +10,7 @@ import {LocationService} from '../common/location.service'
   selector: 'weather',
   template: template
 })
-export class WeatherService {
+export class WeatherComponent {
 
   @Output() updateMarkers: Function;
 
@@ -30,7 +30,7 @@ export class WeatherService {
   callbackDownloadFunction: Function;
 
   constructor(/*restService: RestService*/){
-    console.log("GooglemapComponent");
+    console.log("WeatherComponent");
     LocationService.getCurrentLocation(this.callbackLocation.bind(this));
 
   }
@@ -65,7 +65,7 @@ export class WeatherService {
   //     </div>`
   // }
 
-  // private generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
+  // private generateTownTable(array: Weather.ITownWeather[], context: WeatherComponent){
   //   // context.townTableTemp = context._initTable();
   //   // array.forEach((value, index, array) => {
   //   //   context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
@@ -76,12 +76,12 @@ export class WeatherService {
   //   // context.updateTowsTable(context);
   // }
 
-  // private updateTowsTable(context: WeatherService){
+  // private updateTowsTable(context: WeatherComponent){
   //   document.querySelector('.townstable').innerHTML = context.townTableRender;
   // }
 
 
-  private callBackResponseList(data: string, context: WeatherService){
+  private callBackResponseList(data: string, context: WeatherComponent){
     if (data !== null){
       context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
 

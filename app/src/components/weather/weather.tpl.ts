@@ -22,7 +22,7 @@ export const template: string = `
     -->
     
     <ul>
-        <li *ngFor="town in townsTable">
+        <li *ng-for="town in townsTable">
             <table class="tablerow">
             <tr>
                 <td><span class="townname">{{town.name}}</span></td>
@@ -30,13 +30,13 @@ export const template: string = `
                 <td></td>
             </tr>
             <tr>
-                <td><span>Temperature: </span><span>{{Math.round(town.temp-273.15)}}</span></td>
+                <td><span>Temperature: </span><span>{{town.temp-273.15}}</span></td>
                 <td><span>Humidity: </span><span>{{town.humidity||''}}</span></td>
                 <td><span>Wind: </span><span>{{town.wind.speed||''}}</span></td>
             </tr>
         </table>
         </li>
-    </ul>
+    </ul>    
     
 </div>
   `;
