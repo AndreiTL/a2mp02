@@ -17,18 +17,18 @@ export class AppComponent  {
   weatherOptions: Weather.IWeatherOptions = {lat: 0, lng: 0, cnt: 0};
 
   constructor(){
-    LocationService.getCurrentLocation(this.callbackLocation.bind(this))
+    // LocationService.getCurrentLocation(this.callbackLocation.bind(this))
   }
 
-  callbackLocation(coordinate: Coordinates){
-    this.googleOptions.lat = coordinate.latitude;
-    this.googleOptions.lng = coordinate.longitude;
-    this.googleOptions.zoom = 8;
-
-    this.weatherOptions.lat = coordinate.latitude;
-    this.weatherOptions.lng = coordinate.longitude;
-    this.weatherOptions.cnt = 10;
-  }
+  // callbackLocation(coordinate: Coordinates){
+  //   this.googleOptions.lat = coordinate.latitude;
+  //   this.googleOptions.lng = coordinate.longitude;
+  //   this.googleOptions.zoom = 8;
+  //
+  //   this.weatherOptions.lat = coordinate.latitude;
+  //   this.weatherOptions.lng = coordinate.longitude;
+  //   this.weatherOptions.cnt = 10;
+  // }
 
 
 }

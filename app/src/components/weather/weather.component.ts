@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, Output} from '@angular/core';
 import {template} from './weather.tpl';
 
+import {Weather} from './weather.d';
+
 import {RestService} from '../common/rest.service';
+import {LocationService} from '../common/location.service'
 
 @Component({
   selector: 'weather',
   template: template
 })
 export class WeatherService {
+
+  @Output() updateMarkers: Function;
+
 
   API: string = `94c7919f6854ca11558382472a998f8f`;
   // cnt: string = '10';
@@ -19,60 +25,70 @@ export class WeatherService {
   townTableTemp: string = '';
   townTableRender: string = 'Loading';
 
+  townsTable: Weather.ITownWeather[] ;
+
   callbackDownloadFunction: Function;
 
   constructor(/*restService: RestService*/){
     console.log("GooglemapComponent");
+    LocationService.getCurrentLocation(this.callbackLocation.bind(this));
+
   }
 
-
-  private _initTable(){
-    return `<div class='tablewrapper'>`
+  callbackLocation(coordinate: Coordinates) {
+    this.downloadWeatherInCircle(coordinate.latitude, coordinate.longitude, 10, this.callbackDownloadFunction);
   }
+
+  // private _initTable(){
+  //   return `<div class='tablewrapper'>`
+  // }
   // _addLineToTable(tableQuery: string, row: string){
   //   tableQuery.concat(row);
   // }
-  private _endTable(){
-    return '</div>';
-  }
-  private generateTableRow(rowObject: Weather.ITownWeather){
-    return `<div class="rowelement">         
-        <table class="tablerow">
-            <tr>
-                <td><span class="townname">${rowObject.name}</span></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><span>Temperature: </span><span>${Math.round(rowObject.main.temp-273.15)}</span></td>
-                <td><span>Humidity: </span><span>${rowObject.main.humidity||''}</span></td>
-                <td><span>Wind: </span><span>${rowObject.wind.speed||''}</span></td>
-            </tr>
-        </table>        
-      </div>`
-  }
+  // private _endTable(){
+  //   return '</div>';
+  // }
+  // private generateTableRow(rowObject: Weather.ITownWeather){
+  //   return `<div class="rowelement">
+  //       <table class="tablerow">
+  //           <tr>
+  //               <td><span class="townname">${rowObject.name}</span></td>
+  //               <td></td>
+  //               <td></td>
+  //           </tr>
+  //           <tr>
+  //               <td><span>Temperature: </span><span>${Math.round(rowObject.main.temp-273.15)}</span></td>
+  //               <td><span>Humidity: </span><span>${rowObject.main.humidity||''}</span></td>
+  //               <td><span>Wind: </span><span>${rowObject.wind.speed||''}</span></td>
+  //           </tr>
+  //       </table>
+  //     </div>`
+  // }
 
-  private generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
-    context.townTableTemp = context._initTable();
-    array.forEach((value, index, array) => {
-      context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
-    });
-    context.townTableTemp = context.townTableTemp.concat(context._endTable());
+  // private generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
+  //   // context.townTableTemp = context._initTable();
+  //   // array.forEach((value, index, array) => {
+  //   //   context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
+  //   // });
+  //   // context.townTableTemp = context.townTableTemp.concat(context._endTable());
+  //
+  //   // context.townTableRender = String(context.townTableTemp);
+  //   // context.updateTowsTable(context);
+  // }
 
-    context.townTableRender = String(context.townTableTemp);
-    context.updateTowsTable(context);
-  }
-
-  private updateTowsTable(context: WeatherService){
-    document.querySelector('.townstable').innerHTML = context.townTableRender;
-  }
+  // private updateTowsTable(context: WeatherService){
+  //   document.querySelector('.townstable').innerHTML = context.townTableRender;
+  // }
 
 
   private callBackResponseList(data: string, context: WeatherService){
     if (data !== null){
       context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
-      context.generateTownTable(context.weatherObject.list, context);
-      context.updateTowsTable(context);
+
+      context.townsTable = context.weatherObject.list;
+
+      // context.generateTownTable(context.weatherObject.list, context);
+      // context.updateTowsTable(context);
       if (context.callbackDownloadFunction !== undefined){
         context.callbackDownloadFunction();
       }

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import {template} from './googlemap.tpl';
 
+import {LocationService} from '../common/location.service';
+
 import {NGoogleMapService} from './googlemap';
 
 import {GoogleMapLoaderService} from '../common/google_maps_loader.service';
@@ -28,6 +30,11 @@ export class GooglemapComponent {
   constructor(){
     console.log("GooglemapComponent");
     this.initMap();
+    LocationService.getCurrentLocation(this.callbackLocation.bind(this))
+  }
+
+  callbackLocation(coordinate: Coordinates) {
+    this.setMapCenterAndZoom(coordinate.latitude, coordinate.longitude, 8);
   }
 
   setMapCenterAndZoom(lat: number, lng: number, zoom: number){
