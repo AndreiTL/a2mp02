@@ -1,11 +1,8 @@
+import {Promise} from "es6-promise";
 
 export const LocationService =  {
-
-  // coordinates: Coordinates = null,
-
-  getCurrentLocation(callBack: Function) {
-
-    // if (!this.coordinates) {
+  getCurrentLocation(): Promise<Coordinates> {
+    return new Promise((resolve, reject): void => {
       let options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -19,23 +16,18 @@ export const LocationService =  {
         console.log('Latitude : ' + crd.latitude);
         console.log('Longitude: ' + crd.longitude);
         console.log('More or less ' + crd.accuracy + ' meters.');
-        callBack(crd);
+        resolve(crd);
         return;
       }
 
       function error(err: PositionError): PositionErrorCallback  {
         console.warn('ERROR(' + err.code + '): ' + err.message);
         alert('Cann\'t get your current position!');
+        reject(err);
         return;
       }
-
       navigator.geolocation.getCurrentPosition(success, error, options);
-    // }
-    // else {
-    //   callBack(this.coordinates, context);
-    // }
-
-
+    });
   }
 };
 

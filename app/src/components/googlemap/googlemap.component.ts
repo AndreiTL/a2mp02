@@ -24,18 +24,22 @@ export class GooglemapComponent {
 
   markerArray: NGoogleMapService.IMarkerPoint[];
 
-  innerBlock: string = `<div id="googlemap"></div>`;
+  // innerBlock: string = `<div id="googlemap"></div>`;
 
 
   constructor(){
     console.log("GooglemapComponent");
     this.initMap();
-    LocationService.getCurrentLocation(this.callbackLocation.bind(this))
+    LocationService.getCurrentLocation().then(
+      (coordinate: Coordinates) => {
+        this.setMapCenterAndZoom(coordinate.latitude, coordinate.longitude, 8);
+      }
+    )
   }
 
-  callbackLocation(coordinate: Coordinates) {
-    this.setMapCenterAndZoom(coordinate.latitude, coordinate.longitude, 8);
-  }
+  // callbackLocation(coordinate: Coordinates) {
+  //   this.setMapCenterAndZoom(coordinate.latitude, coordinate.longitude, 8);
+  // }
 
   setMapCenterAndZoom(lat: number, lng: number, zoom: number){
     let mapOptions: google.maps.MapOptions = {
