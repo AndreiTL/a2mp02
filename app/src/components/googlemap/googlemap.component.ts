@@ -24,9 +24,6 @@ export class GooglemapComponent {
 
   markerArray: NGoogleMapService.IMarkerPoint[];
 
-  // innerBlock: string = `<div id="googlemap"></div>`;
-
-
   constructor(){
     console.log("GooglemapComponent");
     this.initMap();
@@ -36,10 +33,6 @@ export class GooglemapComponent {
       }
     )
   }
-
-  // callbackLocation(coordinate: Coordinates) {
-  //   this.setMapCenterAndZoom(coordinate.latitude, coordinate.longitude, 8);
-  // }
 
   setMapCenterAndZoom(lat: number, lng: number, zoom: number){
     let mapOptions: google.maps.MapOptions = {
@@ -55,7 +48,7 @@ export class GooglemapComponent {
   setMarkers(markerSetArray: NGoogleMapService.IMarkerPoint[]){
     this.markerArray = markerSetArray;
     markerSetArray.forEach((value: NGoogleMapService.IMarkerPoint, index: number, array: NGoogleMapService.IMarkerPoint[]) => {
-      let marker = new google.maps.Marker({
+      new google.maps.Marker({
         position: {lat: value.lat, lng: value.lng},
         map: this.googleMapObj,
         title: value.text

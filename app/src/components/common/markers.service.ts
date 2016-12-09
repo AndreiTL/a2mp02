@@ -1,6 +1,5 @@
-// import {GoogleMapService} from "../googlemap.service";
-
 import {NGoogleMapService} from '../googlemap/googlemap'
+import {Weather} from '../weather/weather.d';
 
 export const MarkersService ={
   processMarkers(array: Weather.ITownWeather[]): NGoogleMapService.IMarkerPoint[] {
@@ -17,4 +16,4 @@ export const MarkersService ={
     });
     return sampleArray;
   }
-}
+};
