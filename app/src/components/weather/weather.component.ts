@@ -35,7 +35,7 @@ export class WeatherComponent {
   }
 
   callbackLocation(coordinate: Coordinates) {
-    this.downloadWeatherInCircle(coordinate.latitude, coordinate.longitude, 10, this.callbackDownloadFunction);
+    this.downloadWeatherInCircle(coordinate.latitude, coordinate.longitude, 1, this.callbackDownloadFunction);
   }
 
   // private _initTable(){

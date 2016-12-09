@@ -1,5 +1,5 @@
 export const template: string = `
-<div>
+<div class="appcontainer">
     <googlemap></googlemap>
     <weather></weather>
     
