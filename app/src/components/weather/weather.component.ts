@@ -1,4 +1,4 @@
-import {Component, Input, Output, NgZone} from '@angular/core';
+import {Component, Input, NgZone} from '@angular/core';
 import {template} from './weather.tpl';
 
 import {Weather} from './weather.d';
@@ -16,21 +16,18 @@ export class WeatherComponent {
 
   API: string = `94c7919f6854ca11558382472a998f8f`;
   // cnt: string = '10';
-  // innerBlock: string;
+
   // url: string = `http://api.openweathermap.org/data/2.5/weather?id=625144&APPID=${this.API}`; // Minsk id
   typeRequest: string = 'GET';
   async: boolean = true;
   weatherObject: Weather.IWeatherResponse;
-  // townTableTemp: string = '';
-  // townTableRender: string = 'Loading';
 
   trigLoad: boolean = false;
   townsTable: Weather.ITownWeather[] ;
 
-  // callbackDownloadFunction: Function;
-
   constructor(
-    private zone: NgZone){
+      private zone: NgZone
+    ){
 
     console.log("WeatherComponent");
     this.townsTable = [];
@@ -45,15 +42,12 @@ export class WeatherComponent {
     if (responseText !== null){
       this.weatherObject = <Weather.IWeatherResponse> JSON.parse(responseText);
       this.townsTable = this.weatherObject.list;
-      // if (this.callbackDownloadFunction !== undefined){
-      //   this.callbackDownloadFunction();
-      // }
       console.log(this);
       this.trigLoad = true;
       this.zone.run(() => {});
     } else {
-      console.log('Cann\'t load data from weather portal!');
-      alert('Cann\'t load data from weather portal!');
+      console.log('Cann\'t update table list!  Input parameter is empty!');
+      alert('Cann\'t update table list! Input parameter is empty!');
     }
   }
 
@@ -62,7 +56,11 @@ export class WeatherComponent {
     RestService.sendRequest(this.typeRequest, urlTemplate, this.async, '').then(
       (responseText: string) => {
         this.updateTableList(responseText);
-      }
+      },
+        () => {
+          console.log('Cann\'t load data from weather portal!');
+          alert('Cann\'t load data from weather portal!');
+        }
     );
   }
 

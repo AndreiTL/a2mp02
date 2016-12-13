@@ -51,8 +51,4 @@ export declare module Weather {
     lat: number;
     cnt: number;
   }
-
 }
-// export declare module 'Weather/Interfaces' {
-//   export default Weather;
-// }
