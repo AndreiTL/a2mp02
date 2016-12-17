@@ -1,15 +1,14 @@
-export declare module NGoogleMapService {
-  interface IMarkerPoint {
+declare namespace NGoogleMapService {
+  export interface IMarkerPoint {
     lng: number;
     lat: number;
     name?: string;
     text: string;
   }
 
-  interface IGoogleMapOptions{
+  export interface IGoogleMapOptions{
     lng: number;
     lat: number;
     zoom: number;
   }
-
 }

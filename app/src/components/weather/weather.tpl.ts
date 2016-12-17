@@ -19,7 +19,6 @@ export const template: string = `
             </table>
           </li>
       </ul>
-    </div>
-    
+    </div>    
 </div>
 `;

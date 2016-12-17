@@ -1,9 +1,6 @@
-import {Promise} from "es6-promise";
-import {NGoogleMapsLoaderService} from './google_maps_loader.service.d';
-
 export const GoogleMapLoaderService =  {
 
-  load(options: NGoogleMapsLoaderService.ILoadOptions): Promise<any>{
+  load(options: IGoogleMapsLoaderService.ILoadOptions): Promise<any>{
     const callbackName = '__googleMapsApiOnLoadCallback';
 
     return new Promise((resolve, reject) => {
@@ -38,7 +35,7 @@ export const GoogleMapLoaderService =  {
           clearTimeout(timeoutId);
         }
 
-        resolve((<NGoogleMapsLoaderService.IWindowWithGoogle> window).google.maps);
+        resolve((<IGoogleMapsLoaderService.IWindowWithGoogle> window).google.maps);
         delete window[callbackName];
       };
 

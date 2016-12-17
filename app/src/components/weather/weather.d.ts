@@ -1,33 +1,32 @@
-export declare module Weather {
-  interface ICoordinate {
+declare namespace Weather {
+  export interface ICoordinate {
     lon: number;
     lat: number;
   }
-  interface IMainWeather {
+  export interface IMainWeather {
     temp: number;
     pressure: number;
     temp_min: number;
     temp_max: number;
     humidity: number;
   }
-  interface IWind{
+  export interface IWind{
     speed: number;
     deg: number;
   }
-  interface ISys {
+  export interface ISys {
     country: string;
   }
-  interface IClouds {
+  export interface IClouds {
     all: number;
   }
-  interface IWeather {
+  export interface IWeather {
     id: number;
     main: string;
     description: string;
     icon: string;
   }
-
-  interface ITownWeather {
+  export interface ITownWeather {
     id: number;
     name: string;
     coord: ICoordinate;
@@ -38,15 +37,13 @@ export declare module Weather {
     clouds: IClouds;
     weather: IWeather[];
   }
-
-  interface IWeatherResponse{
+  export interface IWeatherResponse{
     message: string;
     cod: number;
     count: number;
     list: ITownWeather[];
   }
-
-  interface IWeatherOptions{
+  export interface IWeatherOptions{
     lng: number;
     lat: number;
     cnt: number;

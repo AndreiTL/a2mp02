@@ -1,5 +1,3 @@
-
-import {Promise} from "es6-promise";
 export const RestService =  {
 
   sendRequest(type: string, url: string, async: boolean, body:string) {

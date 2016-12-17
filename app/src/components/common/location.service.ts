@@ -1,5 +1,3 @@
-import {Promise} from "es6-promise";
-
 export const LocationService =  {
   getCurrentLocation(): Promise<Coordinates> {
     return new Promise((resolve, reject): void => {
@@ -10,7 +8,7 @@ export const LocationService =  {
       };
 
       function success(pos: Position): PositionCallback {
-        var crd: Coordinates = pos.coords;
+        let crd: Coordinates = pos.coords;
         // this.coordinates = crd;
         console.log('Your current position is:');
         console.log('Latitude : ' + crd.latitude);

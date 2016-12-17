@@ -1,8 +1,6 @@
 import {Component, Input, NgZone} from '@angular/core';
 import {template} from './weather.tpl';
 
-import {Weather} from './weather.d';
-
 import {RestService} from '../common/rest.service';
 import {LocationService} from '../common/location.service'
 

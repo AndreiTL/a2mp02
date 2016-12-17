@@ -3,8 +3,6 @@ import {template} from './googlemap.tpl';
 
 import {LocationService} from '../common/location.service';
 
-import {NGoogleMapService} from './googlemap';
-
 import {GoogleMapLoaderService} from '../common/google_maps_loader.service';
 
 @Component({
